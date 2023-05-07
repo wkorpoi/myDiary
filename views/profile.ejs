@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <title> My Diary </title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+    <h1>  My Diary </h1>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+
+        <div class="col-sm-6">
+          <h3> Write how you're feeling & this diary will give you a color based on your emotions</h3>
+          <ul class="messages">
+          <% for(var i=0; i<diary.length; i++) {%>
+            <li class="message" style="background:#<%= diary[i].color %>">
+              <span><%= diary[i].feeling %></span>
+              <span><%= diary[i].date %></span>
+              <button class="delete" value="<%= diary[i]._id%>">X</button>
+              <button class="change" value="<%= diary[i]._id%>">change color</button>
+            </li>
+          <% } %>
+          </ul>
+
+          <!-- <h2> Add Items to Wishlist</h2> -->
+        <!-- <% if (user.local.email) { %> -->
+          
+        <form action="/submit" method="POST">
+          <textarea name="feeling" oninput="colorChange()" placeholder='Tell me how you feel ...'></textarea>
+        <button type="submit"> submit </button>
+        </form>
+        </div>
+  
+        <% } %>
+
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+
+</div>
+
+<script src="main.js"></script>
+<script src="server.js"></script>
+
+</body>
+</html>
